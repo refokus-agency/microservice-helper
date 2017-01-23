@@ -1,4 +1,4 @@
-import { findBySampleId } from './reducers/find'
+import * as r from './reducers/find'
 
 export function find(msg, done) {
 
@@ -11,6 +11,23 @@ export function find(msg, done) {
     bundle: bundle
   }
 
-  findBySampleId(state)
+  r.findBySampleIdAndSampleRelatedId(state)
   .then(result => done(null, {ok: true, data: result}))
+}
+
+export function findOr(msg, done) {
+
+  let seneca = this
+
+  const bundle = { where: msg.where }
+
+  const state = {
+    seneca: seneca,
+    bundle: bundle
+  }
+
+  r.findBySampleIdWithOrSelect(state)
+  .then(result => done(null, {ok: true, data: result}))
+
+
 }
