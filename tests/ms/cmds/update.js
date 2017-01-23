@@ -1,7 +1,7 @@
 import * as r from './reducers/update'
 import * as rFind from './reducers/find'
 
-export function updateBy(msg, done) {
+export function updateBy (msg, done) {
 
   let seneca = this
 
@@ -24,4 +24,19 @@ export function updateBy(msg, done) {
     done(null, { ok: false, data: nState })
   })
 
+}
+
+export function updateMultipleFieldsBy (msg, done) {
+
+  let seneca = this
+
+  const bundle = Object.assign({}, { where: msg.where} , { update: msg.update})
+
+  const state = {
+    seneca: seneca,
+    bundle: bundle
+  }
+
+  r.updateMultipleFieldsBy(state)
+  .then(result => done(null, {ok: true, data: result}))
 }
