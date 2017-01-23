@@ -18,6 +18,7 @@ export default function (opts) {
   seneca.add(`${pin}, cmd:find, action: findOr`, cmdFind.findOr)
 
   seneca.add(`${pin}, cmd:update, action: updateBy`, cmdUpdate.updateBy)
+  seneca.add(`${pin}, cmd:update, action: updateMultipleFieldsBy`, cmdUpdate.updateMultipleFieldsBy)
 
   seneca.add(`${pin}, cmd:remove`, cmdRemove.remove)
   seneca.add(`${pin}, cmd:remove, action: removeMany`, cmdRemove.removeMany)
