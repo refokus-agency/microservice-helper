@@ -38,3 +38,9 @@ jspm_packages
 
 # WebStorm
 .idea
+
+# Vim temporary files
+*.swp
+
+# Babel build directory
+build

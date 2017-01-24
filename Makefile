@@ -5,7 +5,6 @@ DEV_DIR = ./src
 BABEL = $(NODE_MODULES_BINARIES)/babel
 MOCHA = $(NODE_MODULES_BINARIES)/mocha
 
-DEBUG = maxxis
 MAINJS_SERVER_FILE = index.js
 
 all:
@@ -18,13 +17,8 @@ build:
 clean:
 	rm -rf $(BUILD_DIR)
 
-test:
-	$(MOCHA) --compilers js:babel-core/register ./tests/*.spec.js
 
-test-find:
-	$(MOCHA) --compilers js:babel-core/register ./tests/find.spec.js
+test-db:
+	$(MOCHA) --compilers js:babel-core/register ./tests/db.spec.js
 
-test-update:
-	$(MOCHA) --compilers js:babel-core/register ./tests/update.spec.js
-
-.PHONY: build clean test test-find test-update
+.PHONY: build clean test-db
