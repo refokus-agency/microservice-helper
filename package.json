@@ -2,9 +2,10 @@
   "name": "microservice-helper",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "make test-db"
+    "test": "make test-db",
+    "prerelease": "make prerelease"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,13 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-watch": "^2.0.5",
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "seneca": "^3.2.2",
+    "seneca-balance-client": "^0.6.0",
+    "seneca-basic": "^0.5.0",
+    "seneca-entity": "^1.3.0",
+    "seneca-mesh": "^0.9.0",
+    "seneca-mongo-store": "^1.1.0"
   },
   "dependencies": {
     "async": "^2.1.4",
@@ -29,12 +36,6 @@
     "joi": "^10.2.0",
     "joi-objectid": "^2.0.0",
     "lodash": "^4.17.4",
-    "moment": "^2.17.1",
-    "seneca": "^3.2.2",
-    "seneca-balance-client": "^0.6.0",
-    "seneca-basic": "^0.5.0",
-    "seneca-entity": "^1.3.0",
-    "seneca-mesh": "^0.9.0",
-    "seneca-mongo-store": "^1.1.0"
+    "moment": "^2.17.1"
   }
 }
