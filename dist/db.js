@@ -80,8 +80,8 @@ function findPromisified(where, collection) {
     query.load$(where, function (err, ret) {
       if (err) return reject(err);
 
-      var data = ret ? ret.data$() : {};
-      var dataRaw = ret || {};
+      var data = ret ? ret.data$() : undefined;
+      var dataRaw = ret || undefined;
 
       resolve({ dataRaw: dataRaw, data: data });
     });
