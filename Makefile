@@ -27,6 +27,10 @@ ifndef VERSION_TYPE
 	$(error VERSION_TYPE is not set)
 endif
 
+	rm -rf $(DIST_DIR)
+	mkdir -p $(DIST_DIR)
+	$(BABEL) ./lib/ -s -D -d $(DIST_DIR)
+
 ifeq ($(VERSION_TYPE), br)
 	$(eval NEW_VERSION := $(shell $(SEMVER) --increment major $(HELPER_VERSION)))
 endif
