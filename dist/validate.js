@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validateElement = exports.validateModel = undefined;
 
 var _joi = require('joi');
 
@@ -17,17 +16,36 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var JoiObjectId = (0, _joiObjectid2.default)(_joi2.default);
 
-function validateModel(incomingObject, schema, callback) {
-  _joi2.default.validate(incomingObject, schema, callback);
+function joiValidator(type) {
+  if (type === 'ObjectId') return JoiObjectId;
+  if (typeof _joi2.default[type] === 'function') return _joi2.default[type];
 }
 
-function validateElement(element, type, callback) {
-  if (type === 'ObjectId') return _joi2.default.validate(element, JoiObjectId(), callback);
+function validatePromisified(objectToValidate, schema) {
 
-  if (typeof _joi2.default[type] === 'function') _joi2.default.validate(element, _joi2.default[type](), callback);
+  return new Promise(function (resolve, reject) {
+
+    _joi2.default.validate(objectToValidate, schema, function (err, result) {
+      if (err) return reject(err);
+
+      resolve(result);
+    });
+  });
 }
 
-exports.validateModel = validateModel;
-exports.validateElement = validateElement;
-exports.default = { validateModel: validateModel, validateElement: validateElement };
+function validateElementPromisified(elementToValidate, type) {
+
+  return new Promise(function (resolve, reject) {
+
+    var v = joiValidator(type);
+
+    _joi2.default.validate(elementToValidate, v(), function (err, result) {
+      if (err) return reject(err);
+
+      resolve(result);
+    });
+  });
+}
+
+exports.default = { validatePromisified: validatePromisified, validateElementPromisified: validateElementPromisified };
 //# sourceMappingURL=validate.js.map
