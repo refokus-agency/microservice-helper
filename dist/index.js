@@ -7,19 +7,19 @@ exports.validate = exports.db = exports.console = undefined;
 
 var _console = require('./console');
 
-var _console2 = _interopRequireDefault(_console);
+var console = _interopRequireWildcard(_console);
 
 var _db = require('./db');
 
-var _db2 = _interopRequireDefault(_db);
+var db = _interopRequireWildcard(_db);
 
 var _validate = require('./validate');
 
-var _validate2 = _interopRequireDefault(_validate);
+var validate = _interopRequireWildcard(_validate);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-exports.console = _console2.default;
-exports.db = _db2.default;
-exports.validate = _validate2.default;
+exports.console = console;
+exports.db = db;
+exports.validate = validate;
 //# sourceMappingURL=index.js.map

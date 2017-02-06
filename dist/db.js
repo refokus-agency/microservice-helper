@@ -11,6 +11,7 @@ exports.updateNativePromisified = updateNativePromisified;
 exports.removeNativePromisified = removeNativePromisified;
 exports.removePromisified = removePromisified;
 exports.populatePromisified = populatePromisified;
+exports.mongoObjectId = mongoObjectId;
 
 var _async = require('async');
 
@@ -261,14 +262,10 @@ function populatePromisified(object, keyString, select, collection) {
   });
 }
 
-exports.default = {
-  savePromisified: savePromisified,
-  findPromisified: findPromisified,
-  findOrPromisified: findOrPromisified,
-  updatePromisified: updatePromisified,
-  updateNativePromisified: updateNativePromisified,
-  removePromisified: removePromisified,
-  removeNativePromisified: removeNativePromisified,
-  populatePromisified: populatePromisified
-};
+function mongoObjectId() {
+  var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+  return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
+    return (Math.random() * 16 | 0).toString(16);
+  }).toLowerCase();
+}
 //# sourceMappingURL=db.js.map

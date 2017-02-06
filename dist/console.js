@@ -30,6 +30,4 @@ function printModule(scope) {
 
   return print;
 }
-
-exports.default = { printModule: printModule };
 //# sourceMappingURL=console.js.map

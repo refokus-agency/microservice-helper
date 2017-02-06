@@ -3,6 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.validatePromisified = validatePromisified;
+exports.validateElementPromisified = validateElementPromisified;
 
 var _joi = require('joi');
 
@@ -16,7 +18,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var JoiObjectId = (0, _joiObjectid2.default)(_joi2.default);
 
-function joiValidator(type) {
+function _joiValidator(type) {
   if (type === 'ObjectId') return JoiObjectId;
   if (typeof _joi2.default[type] === 'function') return _joi2.default[type];
 }
@@ -37,7 +39,7 @@ function validateElementPromisified(elementToValidate, type) {
 
   return new Promise(function (resolve, reject) {
 
-    var v = joiValidator(type);
+    var v = _joiValidator(type);
 
     _joi2.default.validate(elementToValidate, v(), function (err, result) {
       if (err) return reject(err);
@@ -46,6 +48,4 @@ function validateElementPromisified(elementToValidate, type) {
     });
   });
 }
-
-exports.default = { validatePromisified: validatePromisified, validateElementPromisified: validateElementPromisified };
 //# sourceMappingURL=validate.js.map
