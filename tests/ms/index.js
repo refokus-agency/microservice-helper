@@ -1,5 +1,3 @@
-import * as dbHelpers from '../../lib/db'
-
 import * as cmdCreate from './cmds/create'
 import * as cmdFind from './cmds/find'
 import * as cmdRemove from './cmds/remove'
