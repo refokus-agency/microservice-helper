@@ -1,7 +1,14 @@
 import { expect } from 'chai'
 
+import * as dbHelpers from '../lib/db'
+import Joi from 'joi'
+import JoiObjectIdModule from 'joi-objectid'
+
+const JoiObjectId = JoiObjectIdModule(Joi)
+
 import seneca from 'seneca'
 import msTest from './ms/'
+
 
 const tag = 'ms-test'
 const pin = `role:${tag}`
@@ -251,4 +258,12 @@ describe('db helpers testing', () => {
                                   }
     )
    })
+  
+  it('create a valid ObjectId', (done) => {
+    const objectId = dbHelpers.mongoObjectId()
+    Joi.validate(objectId, JoiObjectId(), (err) => {
+      expect(err).to.not.exist
+      done()
+    })
+  })
 })
