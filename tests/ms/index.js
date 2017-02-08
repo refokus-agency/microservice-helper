@@ -2,6 +2,8 @@ import * as cmdCreate from './cmds/create'
 import * as cmdFind from './cmds/find'
 import * as cmdRemove from './cmds/remove'
 import * as cmdUpdate from './cmds/update'
+import * as cmdMicroservice from './cmds/microservice'
+import {doFn} from '../../lib/microservice'
 
 export default function (opts) {
 
@@ -22,4 +24,7 @@ export default function (opts) {
   seneca.add(`${pin}, cmd:remove`, cmdRemove.remove)
   seneca.add(`${pin}, cmd:remove, action: removeMany`, cmdRemove.removeMany)
 
+  seneca.add(`${pin}, cmd:microservice`, doFn(cmdMicroservice.cmdFnc))
+
+  seneca.add(`${pin}, cmd:microservice, action:promise`, doFn(cmdMicroservice.cmdFncPromisified))
 }

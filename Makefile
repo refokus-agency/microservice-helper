@@ -44,7 +44,13 @@ endif
 	cat package.json | $(JSON_TOOL) -e 'this.version="$(NEW_VERSION)"' > package.json.tmp
 	mv package.json.tmp package.json
 
+test:
+	$(MOCHA) --compilers js:babel-core/register ./tests/*.spec.js
+
 test-db:
 	$(MOCHA) --compilers js:babel-core/register ./tests/db.spec.js
 
-.PHONY: build clean prerelease test-db
+test-microservice:
+	$(MOCHA) --compilers js:babel-core/register ./tests/microservice.spec.js
+
+.PHONY: build clean prerelease test test-db test-microservice
