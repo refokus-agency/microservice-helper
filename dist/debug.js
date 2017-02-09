@@ -30,4 +30,4 @@ function printModule(scope) {
 
   return print;
 }
-//# sourceMappingURL=console.js.map
+//# sourceMappingURL=debug.js.map

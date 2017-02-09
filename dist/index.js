@@ -3,11 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validate = exports.db = exports.console = undefined;
+exports.microservice = exports.validate = exports.db = exports.debug = undefined;
 
-var _console = require('./console');
+var _debug = require('./debug');
 
-var console = _interopRequireWildcard(_console);
+var debug = _interopRequireWildcard(_debug);
 
 var _db = require('./db');
 
@@ -17,9 +17,14 @@ var _validate = require('./validate');
 
 var validate = _interopRequireWildcard(_validate);
 
+var _microservice = require('./microservice');
+
+var microservice = _interopRequireWildcard(_microservice);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-exports.console = console;
+exports.debug = debug;
 exports.db = db;
 exports.validate = validate;
+exports.microservice = microservice;
 //# sourceMappingURL=index.js.map
