@@ -1,13 +1,20 @@
-export function cmdFnc ($pipe, $critical, {sampleId}) {
-  if (!sampleId) throw new Error('missing param')
+import {modifySampleId, modifySampleIdAgain, modifySampleIdAgain2, modifySampleIdAgainPromise} from './reducers/microservice'
 
-  return {sampleId}
+export function cmdFnc ($pipe, $critical, state) {
+  return modifySampleId(state)
 }
 
-export function cmdFncPromisified ($pipe, $critical, {sampleId}) {
-  return new Promise((resolve, reject) => {
-    if (!sampleId) return reject(new Error('missing param'))
+export function cmdFncPromisified ($pipe, $critical, state) {
+  return $pipe(modifySampleId, state)
+          .then(modifySampleIdAgain, $critical)
+          .then(modifySampleIdAgainPromise)
+          .then(modifySampleIdAgain2)
+}
 
-    resolve({sampleId})
-  })
+export function cmdFncPromisifiedSilence ($pipe, $critical, state) {
+
+  return $pipe(modifySampleId, state)
+          .then(modifySampleIdAgain)
+          .then(modifySampleIdAgain2)
+    
 }
