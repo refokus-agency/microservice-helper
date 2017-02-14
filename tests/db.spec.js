@@ -60,7 +60,7 @@ describe('db helpers testing', () => {
                   },
                   (err, result) => {
 
-                    senecaApp.act({ role: 'ms-test', cmd: 'find' },
+                    senecaApp.act({ role: 'ms-test', cmd: 'find', action: 'findOne' },
                                   {
                                     where: { 
                                       sampleId        : 'testId2',
@@ -69,12 +69,40 @@ describe('db helpers testing', () => {
                                   },
                                   (err, result) => {
                                     expect(result.ok).to.be.true
+                                    expect(result.data.data).to.be.object
                                     done()
                                   }
                     )
                   })
   })
 
+  it('create sample document and find an array with where - it should be ok', (done) => {
+    const senecaApp = test_seneca(done)
+    senecaApp.act({ role: 'ms-test', cmd: 'create' },
+                  {
+                    data: {
+                      sampleId        : 'testId2',
+                      sampleData      : 'testData2',
+                      sampleRelatedId : 'relatedId'
+                    }
+                  },
+                  (err, result) => {
+
+                    senecaApp.act({ role: 'ms-test', cmd: 'find' },
+                                  {
+                                    where: {
+                                      sampleRelatedId : 'relatedId'
+                                    }
+                                  },
+                                  (err, result) => {
+                                    expect(result.ok).to.be.true
+                                    expect(result.data.data).to.be.array
+                                    done()
+                                  }
+                    )
+                  })
+  })
+  
   it('find with or select - it should be ok', (done) => {
     const senecaApp = test_seneca(done)
     senecaApp.act({ role: 'ms-test', cmd: 'find', action: 'findOr' },
