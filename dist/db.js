@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.savePromisified = savePromisified;
 exports.findPromisified = findPromisified;
+exports.findOnePromisified = findOnePromisified;
 exports.findOrPromisified = findOrPromisified;
 exports.updatePromisified = updatePromisified;
 exports.updateNativePromisified = updateNativePromisified;
@@ -72,6 +73,26 @@ function savePromisified(element, collection) {
 }
 
 function findPromisified(where, collection) {
+
+  var seneca = this;
+
+  return new Promise(function (resolve, reject) {
+    var query = seneca.make$(collection);
+
+    query.list$(where, function (err, ret) {
+      if (err) return reject(err);
+
+      var data = ret ? ret.map(function (e) {
+        return e.data$();
+      }) : [];
+      var dataRaw = ret || [];
+
+      resolve({ dataRaw: dataRaw, data: data });
+    });
+  });
+}
+
+function findOnePromisified(where, collection) {
 
   var seneca = this;
 
