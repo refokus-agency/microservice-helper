@@ -1,8 +1,14 @@
 import * as dbHelpers from '../../../../lib/db'
 
-export function findBySampleIdAndSampleRelatedId(state) {
+export function findBySampleRelatedId(state) {
 
   return  dbHelpers.findPromisified.call(state.seneca, state.bundle.where, 'testcollection')
+                   .then( ({ dataRaw , data }) => Object.assign({}, state, { dataRaw }, { data }))
+}
+
+export function findBySampleIdAndSampleRelatedId(state) {
+
+  return  dbHelpers.findOnePromisified.call(state.seneca, state.bundle.where, 'testcollection')
           .then( ({ dataRaw , data }) => Object.assign({}, state, { dataRaw }, { data }))
 }
 

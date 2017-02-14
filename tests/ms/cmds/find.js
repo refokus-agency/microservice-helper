@@ -12,6 +12,21 @@ export function find(msg, done) {
     bundle: bundle
   }
 
+  r.findBySampleRelatedId(state)
+   .then(result => done(null, {ok: true, data: result}))
+}
+
+export function findOne(msg, done) {
+
+  let seneca = this
+
+  const bundle = { where: msg.where }
+
+  const state = {
+    seneca: seneca,
+    bundle: bundle
+  }
+
   r.findBySampleIdAndSampleRelatedId(state)
   .then(result => done(null, {ok: true, data: result}))
 }

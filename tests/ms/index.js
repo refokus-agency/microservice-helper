@@ -14,7 +14,8 @@ export default function (opts) {
 
   seneca.add(`${pin}, cmd:create`, cmdCreate.create)
 
-  seneca.add(`${pin}, cmd:find`, cmdFind.find)
+  seneca.add(`${pin}, cmd:find,`, cmdFind.find)
+  seneca.add(`${pin}, cmd:find, action: findOne`, cmdFind.findOne)
   seneca.add(`${pin}, cmd:find, action: findOr`, cmdFind.findOr)
   seneca.add(`${pin}, cmd:find, action: findAndPopulate`, cmdFind.findAndPopulate)
 
