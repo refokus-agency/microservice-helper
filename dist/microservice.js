@@ -8,6 +8,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.doFn = doFn;
 
+var _debug = require('./debug');
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var $pipePromise = function () {
@@ -73,6 +75,13 @@ var $pipePromise = function () {
       });
 
       return this;
+    }
+  }, {
+    key: 'debug',
+    value: function debug() {
+      var scope = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
+
+      return this.then((0, _debug.printModule)(scope));
     }
   }]);
 

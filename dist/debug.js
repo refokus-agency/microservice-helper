@@ -20,10 +20,7 @@ function printModule(scope) {
   var debug = (0, _debug2.default)(scope);
 
   var print = function print(string) {
-
-    if (process.env.NODE_ENV == 'production') {
-      console.log((0, _moment2.default)().format('YYYY/MM/DD HH:mm:ss'), string);
-    } else {
+    if (process.env.NODE_ENV !== 'production') {
       debug((0, _moment2.default)().format('YYYY/MM/DD HH:mm:ss'), string);
     }
   };
