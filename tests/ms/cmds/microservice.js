@@ -6,8 +6,10 @@ export function cmdFnc ($pipe, $critical, state) {
 
 export function cmdFncPromisified ($pipe, $critical, state) {
   return $pipe(modifySampleId, state)
+          .debug()
           .then(modifySampleIdAgain, $critical)
           .then(modifySampleIdAgainPromise)
+          .debug('modifySampleIdAgainPromise')
           .then(modifySampleIdAgain2)
 }
 
