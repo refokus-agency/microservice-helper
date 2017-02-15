@@ -5,10 +5,11 @@ Common functions for all grm-like microservices
 
 ### Tech Stack and keywords
 
- - Node.JS
- - Mongo
- - Joi
+ - [NodeJS](https://nodejs.org/en/)
+ - [MongoDB](https://www.mongodb.com/)
+ - [Joi](https://github.com/hapijs/joi)
  - Makefiles
+ - [debug](https://www.npmjs.com/package/debug)
 
 ## Requeriments
  - nodejs
