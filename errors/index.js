@@ -1,9 +1,9 @@
 let errors =
       {
         /* System -------------------------------------------------- */
-        unknownError   : `Something was unexpected.`,
-        apiFail        : `The SD API fail.`,
-        notAllowed     : `User is not allowed to do that.`,
+        unknownError : `Something was unexpected.`,
+        apiFail      : `The SD API fail.`,
+        notAllowed   : `User is not allowed to do that.`,
 
         /* AUTH ---------------------------------------------------- */
         loginFail  : `Login credentials are incorrect.`,
@@ -28,9 +28,9 @@ let errors =
         siteNotFound                      : `Site not Found.`,
         userNotFound                      : `User not found.`,
         avatarNotFound                    : `Avatar not found.`,
-        commentNotFound             : `Comment not found.`,
+        commentNotFound                   : `Comment not found.`,
         applicationNotFound               : `Application not found.`,
-        permitCreationTokenNotFound : `Permit creation token not found.`,
+        permitCreationTokenNotFound       : `Permit creation token not found.`,
         cannotCreateSite                  : `The site already exists.`,
         cannotUndoDelete                  : `Can not undo the delete of this reminder.`,
         cannotDeleteRootSite              : `Can not delete the root site.`,
@@ -51,17 +51,17 @@ let errors =
         invalidEmail                      : `Invalid email format.`,
         invalidPhoneNumber                : `Invalid phone number.`,
         invalidPassword                   : `Invalid password.`,
-        missingParameterMessage       : `Missing parameter: message.`,
-        missingAccountFeatures        : `Cannot remove features from the account.`,
-        missingParameterApplicationId : `Missing parameter: applicationId.`,
-        missingParameterEmails        : `Missing parameter: emails.`,
-        missingParameterVisitors  : `Missing parameter: visitors.`,
-        missingParameterTags      : `Missing parameter: tags.`,
-        missingParameterDueDate   : `Missing parameter: dueDate.`,
-        missingParameterUsers     : `Missing parameter: users.`,
-        missingParameterAddresses : `Missing parameter: addresses.`,
-        missingParameterName      : `Missing parameter: name.`,
-        groupAlreadyExists        : `The group name has already been used.`,
+        missingParameterMessage           : `Missing parameter: message.`,
+        missingAccountFeatures            : `Cannot remove features from the account.`,
+        missingParameterApplicationId     : `Missing parameter: applicationId.`,
+        missingParameterEmails            : `Missing parameter: emails.`,
+        missingParameterVisitors          : `Missing parameter: visitors.`,
+        missingParameterTags              : `Missing parameter: tags.`,
+        missingParameterDueDate           : `Missing parameter: dueDate.`,
+        missingParameterUsers             : `Missing parameter: users.`,
+        missingParameterAddresses         : `Missing parameter: addresses.`,
+        missingParameterName              : `Missing parameter: name.`,
+        groupAlreadyExists                : `The group name has already been used.`,
 
         /* Cost ----------------------------------------------------- */
         invalidCost       : `Invalid cost. Must be a numeric value greater than 0.`,
