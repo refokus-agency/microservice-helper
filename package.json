@@ -1,12 +1,13 @@
 {
   "name": "microservice-helper",
-  "version": "3.1.0",
+  "version": "2.0.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "test": "make test",
     "test-db": "make test-db",
     "test-microservice": "make test-microservice",
+    "test-handler": "make test-handler",
     "prerelease-br": "VERSION_TYPE=br make prerelease",
     "prerelease-fe": "VERSION_TYPE=fe make prerelease",
     "prerelease-fx": "VERSION_TYPE=fx make prerelease"

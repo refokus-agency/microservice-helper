@@ -53,4 +53,7 @@ test-db:
 test-microservice:
 	$(MOCHA) --compilers js:babel-core/register ./tests/microservice.spec.js
 
-.PHONY: build clean prerelease test test-db test-microservice
+test-handler:
+	$(MOCHA) --compilers js:babel-core/register ./tests/handler.spec.js
+
+.PHONY: build clean prerelease test test-db test-microservice test-handler
