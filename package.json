@@ -7,6 +7,7 @@
     "test": "make test",
     "test-db": "make test-db",
     "test-microservice": "make test-microservice",
+    "test-handler": "make test-handler",
     "prerelease-br": "VERSION_TYPE=br make prerelease",
     "prerelease-fe": "VERSION_TYPE=fe make prerelease",
     "prerelease-fx": "VERSION_TYPE=fx make prerelease"
@@ -37,6 +38,7 @@
     "seneca-mongo-store": "^1.1.0"
   },
   "dependencies": {
+    "app-root-path": "^2.0.1",
     "async": "^2.1.4",
     "debug": "^2.6.0",
     "joi": "^10.2.0",
