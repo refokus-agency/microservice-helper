@@ -21,8 +21,11 @@ function handle(id, err) {
 
   var e = new Error(errors[key]);
   e.code = '#' + key;
-  if (err) e.stack = err.stack;
-  if (key === 'unknownError') e.oldError = err;
+
+  if (err) {
+    e.stack = err.stack;
+    e.oldError = err;
+  }
 
   return e;
 }
