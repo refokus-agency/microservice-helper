@@ -22,6 +22,26 @@ describe('Error handler test', function () {
     done()
 
   })
+  it('Given unknownError must return a new error with correct description', function (done) {
+
+    let e = handle('Something was unexpected.')
+
+    expect(e)
+      .to
+      .be
+      .an('error')
+    expect(e)
+      .to
+      .have
+      .property('code', '#unknownError')
+    expect(e)
+      .to
+      .have
+      .property('message', 'Something was unexpected.')
+
+    done()
+
+  })
 
   it('Given #apiFail must return a new error with correct description', function (done) {
 
@@ -67,6 +87,38 @@ describe('Error handler test', function () {
   it('Given unknownError and a error, must return the old stack and the old error as a property', function (done) {
 
     const oldError = new Error()
+    const e        = handle('invalid', oldError)
+
+    expect(e)
+      .to
+      .be
+      .an('error')
+    expect(e)
+      .to
+      .have
+      .property('code', '#unknownError')
+    expect(e)
+      .to
+      .have
+      .property('message', 'Something was unexpected.')
+
+    expect(e)
+      .to
+      .have
+      .property('stack', oldError.stack)
+
+    expect(e)
+      .to
+      .have
+      .property('oldError', oldError)
+    done()
+
+  })
+
+  it('Joi error must add property oldError, function (done)',function(done) {
+
+    let oldError = new Error()
+    oldError.isJoi = true
     const e        = handle('invalid', oldError)
 
     expect(e)
