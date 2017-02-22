@@ -23,10 +23,28 @@ function handle(id, err) {
   e.code = '#' + key;
 
   if (err) {
+
     e.stack = err.stack;
-    e.oldError = err;
+
+    if (err.isJoi) {
+      handleJoi(err, e);
+    } else {
+      e.oldError = err;
+    }
   }
 
   return e;
+}
+
+function handleJoi(joiError, e) {
+  e.badParams = [];
+  e.receivedMessage = joiError._object;
+  joiError.details.forEach(function (detail) {
+
+    e.badParams.push({
+      key: detail.path,
+      msg: detail.message
+    });
+  });
 }
 //# sourceMappingURL=handler.js.map
