@@ -27,7 +27,7 @@ function validatePromisified(objectToValidate, schema) {
 
   return new Promise(function (resolve, reject) {
 
-    _joi2.default.validate(objectToValidate, schema, function (err, result) {
+    _joi2.default.validate(objectToValidate, schema, { abortEarly: false }, function (err, result) {
       if (err) return reject(err);
 
       resolve(result);
@@ -41,7 +41,7 @@ function validateElementPromisified(elementToValidate, type) {
 
     var v = _joiValidator(type);
 
-    _joi2.default.validate(elementToValidate, v(), function (err, result) {
+    _joi2.default.validate(elementToValidate, v(), { abortEarly: false }, function (err, result) {
       if (err) return reject(err);
 
       resolve(result);
