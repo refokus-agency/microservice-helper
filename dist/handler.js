@@ -43,7 +43,8 @@ function handleJoi(joiError, e) {
 
     e.badParams.push({
       key: detail.path,
-      msg: detail.message
+      msg: detail.message,
+      type: detail.type
     });
   });
 }
