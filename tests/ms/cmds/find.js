@@ -1,8 +1,7 @@
 import * as r from './reducers/find'
 import { populateField } from './reducers/populate'
 
-export function find(msg, done) {
-
+export function find (msg, done) {
   let seneca = this
 
   const bundle = { where: msg.where }
@@ -16,8 +15,7 @@ export function find(msg, done) {
    .then(result => done(null, {ok: true, data: result}))
 }
 
-export function findOne(msg, done) {
-
+export function findOne (msg, done) {
   let seneca = this
 
   const bundle = { where: msg.where }
@@ -31,8 +29,7 @@ export function findOne(msg, done) {
   .then(result => done(null, {ok: true, data: result}))
 }
 
-export function findOr(msg, done) {
-
+export function findOr (msg, done) {
   let seneca = this
 
   const bundle = { where: msg.where }
@@ -46,8 +43,7 @@ export function findOr(msg, done) {
   .then(result => done(null, {ok: true, data: result}))
 }
 
-export function findAndPopulate(msg, done) {
-
+export function findAndPopulate (msg, done) {
   let seneca = this
 
   const bundle = { where: msg.where }

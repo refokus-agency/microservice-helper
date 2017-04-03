@@ -7,6 +7,8 @@ BABEL = $(NODE_MODULES_BINARIES)/babel
 MOCHA = $(NODE_MODULES_BINARIES)/mocha
 SEMVER = $(NODE_MODULES_BINARIES)/semver
 JSON_TOOL = $(NODE_MODULES_BINARIES)/json
+STANDARD = $(NODE_MODULES_BINARIES)/standard
+SNAZZY = $(NODE_MODULES_BINARIES)/snazzy
 
 MAINJS_SERVER_FILE = index.js
 
@@ -44,16 +46,19 @@ endif
 	cat package.json | $(JSON_TOOL) -e 'this.version="$(NEW_VERSION)"' > package.json.tmp
 	mv package.json.tmp package.json
 
+code-style:
+	$(STANDARD) --fix --verbose | $(SNAZZY)
+
 test:
-	$(MOCHA) --compilers js:babel-core/register ./tests/*.spec.js
+	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/*.spec.js
 
 test-db:
-	$(MOCHA) --compilers js:babel-core/register ./tests/db.spec.js
+	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/db.spec.js
 
 test-microservice:
-	$(MOCHA) --compilers js:babel-core/register ./tests/microservice.spec.js
+	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/microservice.spec.js
 
 test-handler:
-	$(MOCHA) --compilers js:babel-core/register ./tests/handler.spec.js
+	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/handler.spec.js
 
-.PHONY: build clean prerelease test test-db test-microservice test-handler
+.PHONY: build clean prerelease test test-db test-microservice test-handler code-style

@@ -14,9 +14,7 @@ export function cmdFncPromisified ($pipe, $critical, state) {
 }
 
 export function cmdFncPromisifiedSilence ($pipe, $critical, state) {
-
   return $pipe(modifySampleId, state)
           .then(modifySampleIdAgain)
           .then(modifySampleIdAgain2)
-    
 }
