@@ -14,7 +14,7 @@ export function findBySampleIdAndSampleRelatedId(state) {
 
 export function findBySampleIdWithOrSelect(state) {
 
-  return  dbHelpers.findOrPromisified.call(state.seneca, state.bundle.where.$or, 'testcollection')
+  return  dbHelpers.findOrPromisified.call(state.seneca, state.bundle.where, 'testcollection')
           .then( ({ dataRaw , data }) => Object.assign({}, state, { dataRaw }, { data }))
 
 }

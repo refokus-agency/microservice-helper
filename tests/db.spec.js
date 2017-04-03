@@ -108,22 +108,53 @@ describe('db helpers testing', () => {
     senecaApp.act({ role: 'ms-test', cmd: 'find', action: 'findOr' },
                   {
                     where: { 
-                      $or: [
-                        { 
-                          sampleId        : 'inexistentTestId1'
-                          //sampleId        : 'testId1',
+                      or$: [
+                        {
+                          sampleId        : 'testId1',
                         },
                         {
-                          //sampleRelatedId : 'relatedTestId1'
-                          sampleRelatedId : 'inexistentRelatedTestId1'
+                          sampleData : 'testData2'
                         }
                       ]
                     }
                   },
                   (err, result) => {
                     expect(result.ok).to.be.true
+                    
                     done()
                   }
+    )
+  })
+
+  it('find with or select (limit and skip)  - it should be ok', (done) => {
+    const senecaApp = test_seneca(done)
+    senecaApp.act({ role: 'ms-test', cmd: 'find', action: 'findOr' },
+      {
+        where: {
+          or$: [
+            {
+              sampleId        : 'testId1',
+            },
+            {
+              sampleData : 'testData2'
+            }
+          ],
+          limit$: 1,
+          skip$: 1
+        }
+      },
+      (err, result) => {
+        expect(result.ok).to.be.true
+        expect(result.data.data.length)
+          .to
+          .be
+          .equal(1)
+        expect(result.data.data[0].sampleId)
+          .to
+          .be
+          .equal('testId2')
+        done()
+      }
     )
   })
 
