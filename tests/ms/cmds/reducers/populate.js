@@ -1,7 +1,6 @@
 import * as dbHelpers from '../../../../lib/db'
 
-export function populateField(state) {
-
+export function populateField (state) {
   return dbHelpers.populatePromisified.call(
                   state.seneca,
                   state.data,
@@ -10,4 +9,3 @@ export function populateField(state) {
                   'testcollection')
         .then(data => Object.assign({}, state, { data }))
 }
-

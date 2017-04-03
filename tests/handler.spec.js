@@ -1,11 +1,12 @@
+/* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
+
 import {expect} from 'chai'
 import {handle} from '../lib/handler'
 import Joi from 'joi'
 
 describe('Error handler test', function () {
-
   it('Given apiFail must return a new error with correct description', function (done) {
-
     let e = handle('apiFail')
 
     expect(e)
@@ -25,7 +26,6 @@ describe('Error handler test', function () {
   })
 
   it('Given unknownError must return a new error with correct description', function (done) {
-
     let e = handle('Something was unexpected.')
 
     expect(e)
@@ -45,7 +45,6 @@ describe('Error handler test', function () {
   })
 
   it('Given #apiFail must return a new error with correct description', function (done) {
-
     let e = handle('#apiFail')
 
     expect(e)
@@ -65,7 +64,6 @@ describe('Error handler test', function () {
   })
 
   it('Given invalid123 must return Unknown error', function (done) {
-
     let e = handle('invalid123')
 
     expect(e)
@@ -85,9 +83,8 @@ describe('Error handler test', function () {
   })
 
   it('Given unknownError and a error, must return the old stack and the old error as a property', function (done) {
-
     const oldError = new Error()
-    const e        = handle('invalid', oldError)
+    const e = handle('invalid', oldError)
 
     expect(e)
       .to
@@ -115,21 +112,20 @@ describe('Error handler test', function () {
   })
 
   it('Joi error must add property badParams and receivedMessage', function (done) {
-
     const schema = {
-      a : Joi.number(),
-      b : Joi.boolean(),
-      c : Joi.array()
+      a: Joi.number(),
+      b: Joi.boolean(),
+      c: Joi.array()
              .required(),
-      d : Joi.array()
+      d: Joi.array()
              .min(1)
              .required(),
-      e : Joi.string()
+      e: Joi.string()
     }
 
-    const msg = {a : 'string', b : 123, c : true, e : 'test'}
+    const msg = {a: 'string', b: 123, c: true, e: 'test'}
 
-    let result = Joi.validate(msg, schema, {abortEarly : false})
+    let result = Joi.validate(msg, schema, {abortEarly: false})
 
     const e = handle('#schemaValidation', result.error)
 
@@ -157,5 +153,4 @@ describe('Error handler test', function () {
 
     done()
   })
-
 })

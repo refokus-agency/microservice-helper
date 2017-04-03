@@ -6,10 +6,8 @@ import * as cmdMicroservice from './cmds/microservice'
 import {doFn} from '../../lib/microservice'
 
 export default function (opts) {
-
   let seneca = this
 
-  const print = opts.printFunction
   const pin = opts.pin
 
   seneca.add(`${pin}, cmd:create`, cmdCreate.create)
