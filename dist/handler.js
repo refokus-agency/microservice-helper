@@ -1,48 +1,48 @@
-'use strict'
+'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.handle = handle
+});
+exports.handle = handle;
 
-var _appRootPath = require('app-root-path')
+var _appRootPath = require('app-root-path');
 
-var _appRootPath2 = _interopRequireDefault(_appRootPath)
+var _appRootPath2 = _interopRequireDefault(_appRootPath);
 
-function _interopRequireDefault (obj) { return obj && obj.__esModule ? obj : { default: obj } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var errors = require(_appRootPath2.default + '/errors')
+var errors = require(_appRootPath2.default + '/errors');
 
-function handle (id, err) {
-  var key = id.replace(/^#/, '')
+function handle(id, err) {
+  var key = id.replace(/^#/, '');
 
-  if (errors[key] == undefined) return handle('unknownError', err)
+  if (errors[key] === undefined) return handle('unknownError', err);
 
-  var e = new Error(errors[key])
-  e.code = '#' + key
+  var e = new Error(errors[key]);
+  e.code = '#' + key;
 
   if (err) {
-    e.stack = err.stack
+    e.stack = err.stack;
 
     if (err.isJoi) {
-      handleJoi(err, e)
+      handleJoi(err, e);
     } else {
-      e.oldError = err
+      e.oldError = err;
     }
   }
 
-  return e
+  return e;
 }
 
-function handleJoi (joiError, e) {
-  e.badParams = []
-  e.receivedMessage = joiError._object
+function handleJoi(joiError, e) {
+  e.badParams = [];
+  e.receivedMessage = joiError._object;
   joiError.details.forEach(function (detail) {
     e.badParams.push({
       key: detail.path,
       msg: detail.message,
       type: detail.type
-    })
-  })
+    });
+  });
 }
-// # sourceMappingURL=handler.js.map
+//# sourceMappingURL=handler.js.map
