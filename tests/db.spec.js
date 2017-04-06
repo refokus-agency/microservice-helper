@@ -83,8 +83,8 @@ describe('db helpers testing', () => {
     senecaApp.act({ role: 'ms-test', cmd: 'create' },
       {
         data: {
-          sampleId: 'testId2',
-          sampleData: 'testData2',
+          sampleId: 'testId3',
+          sampleData: 'testData3',
           sampleRelatedId: 'relatedId'
         }
       },
@@ -158,6 +158,42 @@ describe('db helpers testing', () => {
           .to
           .be
           .equal('testId2')
+        done()
+      }
+    )
+  })
+
+  it('find with or select (sort)  - it should be ok', (done) => {
+    const senecaApp = testSeneca(done)
+    senecaApp.act({ role: 'ms-test', cmd: 'find', action: 'findOr' },
+      {
+        where: {
+          or$: [
+            {
+              sampleId: 'testId1'
+            },
+            {
+              sampleData: 'testData2'
+            },
+            {
+              sampleId: 'testId3'
+            }
+          ],
+          sort$: {sampleId: -1}
+        }
+      },
+      (err, result) => {
+        if (err) return done(err)
+
+        expect(result.ok).to.be.true
+        expect(result.data.data.length)
+          .to
+          .be
+          .equal(3)
+        expect(result.data.data[0].sampleId)
+          .to
+          .be
+          .equal('testId3')
         done()
       }
     )
