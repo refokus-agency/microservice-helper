@@ -156,9 +156,53 @@ function findOrPromisified(where, collection) {
         data = data.slice(0, where.limit$);
       }
 
+      if (where.sort$) {
+        data.sort(_sort(where.sort$));
+      }
       resolve({ dataRaw: dataRaw, data: data });
     });
   });
+}
+
+function _sort(condition) {
+  return function (a, b) {
+    var order = 0;
+
+    var keys = Object.keys(condition);
+
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = keys[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var k = _step.value;
+
+        if (typeof a[k] === 'string') {
+          order = a[k].localeCompare(b[k]) * condition[k];
+        } else {
+          order = a[k] * condition[k] - b[k] * condition[k];
+        }
+
+        if (order !== 0) break;
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    return order;
+  };
 }
 
 function updatePromisified(dataRaw, bundle, fields) {
