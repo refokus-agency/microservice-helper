@@ -5,6 +5,8 @@ services:
 - mongodb
 - redis-server
 before_install:
+- openssl aes-256-cbc -K $encrypted_c94fe7b6f385_key -iv $encrypted_c94fe7b6f385_iv
+  -in secrets.tar.enc -out secrets.tar -d
 - tar -xvf secrets.tar
 - sudo apt-get install python-software-properties
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
