@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "generate-docs": "jsdoc -R ./README.md -c ./jsdoc.json",
     "test": "make test",
     "test-db": "make test-db",
     "test-microservice": "make test-microservice",
@@ -28,6 +29,7 @@
     "babel-watch": "^2.0.5",
     "chai": "^3.5.0",
     "joi": "^10.2.2",
+    "jsdoc": "^3.4.3",
     "json": "^9.0.4",
     "mocha": "^3.2.0",
     "semver": "^5.3.0",

@@ -1,0 +1,14 @@
+{
+  "source": {
+    "include": ["./lib"],
+    "includePattern": ".+\\.js(doc)?$"
+  },
+  "opts": {
+    "encoding": "utf8",
+    "destination": "./docs/",
+    "recurse": true
+  },
+    "tags": {
+      "allowUnknownTags": true
+    }
+}
