@@ -44,6 +44,3 @@ jspm_packages
 
 # Babel build directory
 build
-
-# Documentation
-docs

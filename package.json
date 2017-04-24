@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "generate-docs": "jsdoc -R ./README.md -c ./jsdoc.json",
+    "generate-docs": "make generate-docs",
     "test": "make test",
     "test-db": "make test-db",
     "test-microservice": "make test-microservice",

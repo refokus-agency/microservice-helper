@@ -10,7 +10,7 @@ Common functions for all grm-like microservices
  - [NodeJS](https://nodejs.org/en/)
  - [MongoDB](https://www.mongodb.com/)
  - [Joi](https://github.com/hapijs/joi)
- - Makefiles
+ - [Makefiles](https://www.gnu.org/software/make/manual/make.html)
  - [debug](https://www.npmjs.com/package/debug)
 
 ## Requeriments
@@ -51,4 +51,10 @@ $ npm run prerelease-fx
 
 ```bash
 $ npm test
+```
+## Documentation
+
+Generate and actualize documentation with:
+```bash
+npm run generate-docs
 ```

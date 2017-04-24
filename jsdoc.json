@@ -1,6 +1,8 @@
 {
   "source": {
-    "include": ["./lib"],
+    "include": [
+      "./lib"
+    ],
     "includePattern": ".+\\.js(doc)?$"
   },
   "opts": {
@@ -8,7 +10,7 @@
     "destination": "./docs/",
     "recurse": true
   },
-    "tags": {
-      "allowUnknownTags": true
-    }
+  "tags": {
+    "allowUnknownTags": true
+  }
 }
