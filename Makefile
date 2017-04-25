@@ -61,4 +61,8 @@ test-microservice:
 test-handler:
 	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/handler.spec.js
 
+generate-docs:
+	rm -rf docs
+	jsdoc -R ./README.md -c ./jsdoc.json --verbose
+
 .PHONY: build clean prerelease test test-db test-microservice test-handler code-style
