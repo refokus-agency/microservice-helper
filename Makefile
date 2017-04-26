@@ -9,6 +9,7 @@ SEMVER = $(NODE_MODULES_BINARIES)/semver
 JSON_TOOL = $(NODE_MODULES_BINARIES)/json
 STANDARD = $(NODE_MODULES_BINARIES)/standard
 SNAZZY = $(NODE_MODULES_BINARIES)/snazzy
+JSDOC = $(NODE_MODULES_BINARIES)/jsdoc
 
 MAINJS_SERVER_FILE = index.js
 
@@ -63,6 +64,6 @@ test-handler:
 
 generate-docs:
 	rm -rf docs
-	jsdoc -R ./README.md -c ./jsdoc.json --verbose
+	$(JSDOC) -R ./README.md -c ./jsdoc.json --verbose
 
 .PHONY: build clean prerelease test test-db test-microservice test-handler code-style
