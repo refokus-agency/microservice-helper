@@ -3,6 +3,11 @@ node_js: '7'
 install: npm install
 notifications:
   email: false
+  slack:
+    rooms:
+      - bons:KZl1tUMPIYFg8Ev8AlZf19bo
+    on_success:never
+    on_failure:change
 services:
 - mongodb
 - redis-server
