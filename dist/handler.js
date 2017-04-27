@@ -13,6 +13,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var errors = require(_appRootPath2.default + '/errors');
 
+/**
+ * Generate custom errors
+ * @param {String} id - Id to be shown
+ * @param {Error} [err] Error to be added as oldError in the return object.
+ * @returns {Error} Custom Error instance
+ */
+/**
+ * Error handler module. In order to work , the project must have an error directory in the root folder
+ * @module
+ *
+ */
 function handle(id, err) {
   var key = id.replace(/^#/, '');
 
