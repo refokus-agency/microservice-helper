@@ -15,6 +15,15 @@ var _moment2 = _interopRequireDefault(_moment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ *
+ * @param scope - Scope to be added to the print function
+ * @returns {Function} Pretty print function
+ */
+/**
+ * Debug helper module.
+ * @module
+ */
 function printModule(scope) {
   var debug = (0, _debug2.default)(scope);
 
