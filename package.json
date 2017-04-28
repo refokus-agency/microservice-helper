@@ -1,10 +1,11 @@
 {
   "name": "microservice-helper",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "generate-docs": "make generate-docs",
+    "generate-md": "make generate-md",
     "test": "make test",
     "test-db": "make test-db",
     "test-microservice": "make test-microservice",
@@ -30,6 +31,7 @@
     "chai": "^3.5.0",
     "joi": "^10.2.2",
     "jsdoc": "^3.4.3",
+    "jsdoc-to-markdown": "^3.0.0",
     "json": "^9.0.4",
     "mocha": "^3.2.0",
     "semver": "^5.3.0",

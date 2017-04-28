@@ -35,7 +35,10 @@ function _load(id, senecaQuery, next) {
 
     next(null, data.data$());
   });
-}
+} /**
+   * @module
+   */
+
 
 function _getFieldValue(object, field) {
   var fieldKey = void 0;
@@ -55,7 +58,12 @@ function _getFieldValue(object, field) {
 
   return { fieldKey: fieldKey, fieldValue: fieldValue };
 }
-
+/**
+ *
+ * @param {Obecjt} element - Element to be stored in MongoDB
+ * @param {String} collection - Collection where the element will be stored
+ * @returns {Promise}
+ */
 function savePromisified(element, collection) {
   var seneca = this;
 
@@ -70,7 +78,12 @@ function savePromisified(element, collection) {
     });
   });
 }
-
+/**
+ *
+ * @param {Object} where - Query to be executed
+ * @param {String} collection - Collection to be used
+ * @returns {Promise} { dataRaw, data }
+ */
 function findPromisified(where, collection) {
   var seneca = this;
 
@@ -89,7 +102,12 @@ function findPromisified(where, collection) {
     });
   });
 }
-
+/**
+ *
+ * @param {Object} where - Query to be executed
+ * @param {String} collection - Collection to be used
+ * @returns {Promise} { dataRaw, data }
+ */
 function findOnePromisified(where, collection) {
   var seneca = this;
 
@@ -106,7 +124,12 @@ function findOnePromisified(where, collection) {
     });
   });
 }
-
+/**
+ *
+ * @param {Object} where - Query to be executed
+ * @param {String} collection - Collection to be used
+ * @returns {Promise} { dataRaw, data }
+ */
 function findOrPromisified(where, collection) {
   var seneca = this;
 
@@ -204,7 +227,13 @@ function _sort(condition) {
     return order;
   };
 }
-
+/**
+ *
+ * @param dataRaw
+ * @param bundle
+ * @param fields
+ * @returns {Promise}
+ */
 function updatePromisified(dataRaw, bundle, fields) {
   return new Promise(function (resolve, reject) {
     var originalDoc = dataRaw.data$();
@@ -233,7 +262,13 @@ function updatePromisified(dataRaw, bundle, fields) {
     });
   });
 }
-
+/**
+ *
+ * @param where
+ * @param opFields
+ * @param collection
+ * @returns {Promise}
+ */
 function updateNativePromisified(where, opFields, collection) {
   var seneca = this;
 
@@ -250,7 +285,12 @@ function updateNativePromisified(where, opFields, collection) {
     });
   });
 }
-
+/**
+ *
+ * @param {Object} where - Query to be executed
+ * @param {String} collection - Collection to be used
+ * @returns {Promise} { dataRaw, data }
+ */
 function removeNativePromisified(where, collection) {
   var seneca = this;
 
@@ -267,7 +307,12 @@ function removeNativePromisified(where, collection) {
     });
   });
 }
-
+/**
+ *
+ * @param {Object} where - Query to be executed
+ * @param {String} collection - Collection to be used
+ * @returns {Promise} { dataRaw, data }
+ */
 function removePromisified(where, collection) {
   var seneca = this;
 
@@ -284,7 +329,14 @@ function removePromisified(where, collection) {
     });
   });
 }
-
+/**
+ *
+ * @param object
+ * @param keyString
+ * @param select
+ * @param collection
+ * @returns {Promise}
+ */
 function populatePromisified(object, keyString, select, collection) {
   var seneca = this;
 
@@ -324,7 +376,10 @@ function populatePromisified(object, keyString, select, collection) {
     });
   });
 }
-
+/**
+ *
+ * @returns {string} - Generate a mongoObjectId
+ */
 function mongoObjectId() {
   var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
   return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
