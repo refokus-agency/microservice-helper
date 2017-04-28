@@ -2,6 +2,7 @@ NODE_MODULES_BINARIES = ./node_modules/.bin
 BUILD_DIR = ./build
 DEV_DIR = ./src
 DIST_DIR = ./dist
+JS_FILES=$(shell find lib -type f -name '*.js' | tail -r)
 
 BABEL = $(NODE_MODULES_BINARIES)/babel
 MOCHA = $(NODE_MODULES_BINARIES)/mocha
@@ -9,7 +10,7 @@ SEMVER = $(NODE_MODULES_BINARIES)/semver
 JSON_TOOL = $(NODE_MODULES_BINARIES)/json
 STANDARD = $(NODE_MODULES_BINARIES)/standard
 SNAZZY = $(NODE_MODULES_BINARIES)/snazzy
-JSDOC = $(NODE_MODULES_BINARIES)/jsdoc
+JSDOC2MD = $(NODE_MODULES_BINARIES)/jsdoc2md
 
 MAINJS_SERVER_FILE = index.js
 
@@ -63,7 +64,6 @@ test-handler:
 	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/handler.spec.js
 
 generate-docs:
-	rm -rf docs
-	$(JSDOC) -R ./README.md -c ./jsdoc.json --verbose
+	$(JSDOC2MD) $(JS_FILES) > API.md
 
-.PHONY: build clean prerelease test test-db test-microservice test-handler code-style
+.PHONY: build clean prerelease test test-db test-microservice test-handler code-style generate-docs
