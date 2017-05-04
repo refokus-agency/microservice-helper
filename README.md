@@ -1,6 +1,7 @@
 # microservice-helper
 [![Build Status](https://travis-ci.org/bons/microservice-helper.svg?branch=master)](https://travis-ci.org/bons/microservice-helper)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NSP Status](https://nodesecurity.io/orgs/bons/projects/20009dce-13aa-4e49-820d-310f8b3ae7d3/badge)](https://nodesecurity.io/orgs/bons/projects/20009dce-13aa-4e49-820d-310f8b3ae7d3)
 
 ## Description
 Common functions for all grm-like microservices
