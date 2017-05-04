@@ -11,6 +11,7 @@ JSON_TOOL = $(NODE_MODULES_BINARIES)/json
 STANDARD = $(NODE_MODULES_BINARIES)/standard
 SNAZZY = $(NODE_MODULES_BINARIES)/snazzy
 JSDOC2MD = $(NODE_MODULES_BINARIES)/jsdoc2md
+NSP = $(NODE_MODULES_BINARIES)/nsp
 
 MAINJS_SERVER_FILE = index.js
 
@@ -51,17 +52,20 @@ endif
 code-style:
 	$(STANDARD) --fix --verbose | $(SNAZZY)
 
+security:
+	$(NSP) check --output summary
+
 test:
-	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/*.spec.js
+	make security && make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/*.spec.js
 
 test-db:
-	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/db.spec.js
+	make security && make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/db.spec.js
 
 test-microservice:
-	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/microservice.spec.js
+	make security && make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/microservice.spec.js
 
 test-handler:
-	make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/handler.spec.js
+	make security && make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/handler.spec.js
 
 generate-docs:
 	$(JSDOC2MD) $(JS_FILES) > API.md
