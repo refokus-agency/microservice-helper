@@ -18,7 +18,6 @@ var _debug = require('./debug');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/** Class representing a custom Promise. */
 var $pipePromise = function () {
   /**
    * Basic Promise object that is transported across de pipeline
@@ -34,7 +33,7 @@ var $pipePromise = function () {
     this.state = state;
     this.promise = new Promise(function (resolve, reject) {
       try {
-        var fncCalled = fnc(_this.state);
+        var fncCalled = fnc(Object.assign({}, _this.state));
 
         if (!(typeof fncCalled.then === 'function')) {
           return _this._successHandler(fncCalled, resolve);
@@ -102,9 +101,9 @@ var $pipePromise = function () {
 }();
 /**
  *
- * @param {Function} fnc - Function to execute in the pipeline
- * @param {Object} state - Current state of the App
- * @param {boolean} [critical] - When $critical is present, an exception stop de pipe execution
+ * @param {Function} fnc Function to execute in the pipeline.
+ * @param {Object} state Current state of the App.
+ * @param {boolean} [critical] When $critical is present, an exception stop de pipe execution.
  * @returns {$pipePromise}
  */
 
@@ -125,9 +124,9 @@ function _generateState(seneca, msg) {
   return Object.assign({}, { seneca: seneca }, nMsg);
 }
 /**
- * Wrapper function. If all is ok, the result will be { ok : true , data : {result} } /n
- * When is an error in business logic, the result will be { ok : false, err : Error } and, /n
- * @param {Function} fnc - Command function that must be executed
+ * Wrapper function. If all is ok, the result will be { ok : true , data : {result} }
+ * When is an error in business logic, the result will be { ok : false, err : Error }.
+ * @param {Function} fnc Command function that must be executed.
  * @returns {Object}
  */
 function doFn(fnc) {

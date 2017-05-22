@@ -17,8 +17,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  *
- * @param scope - Scope to be added to the print function
- * @returns {Function} Pretty print function
+ * @param scope Scope to be added to the print function.
+ * @returns {Function} Pretty Print function.
  */
 /**
  * Debug helper module.
