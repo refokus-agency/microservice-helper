@@ -19,7 +19,6 @@ var _debug = require('./debug');
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var $pipePromise = function () {
-
   /**
    * Basic Promise object that is transported across de pipeline
    * @param {Function} fnc - Function to execute in the pipeline
@@ -64,7 +63,7 @@ var $pipePromise = function () {
         this.critical = true;
         return reject(error);
       }
-      console.warn(error);
+      if (process.env.NODE_ENV === 'production' || process.env.DEBUG) console.warn(error);
       this.state = Object.assign({}, this.state, { error: error });
       return resolve(this.state);
     }
@@ -82,7 +81,7 @@ var $pipePromise = function () {
           _this2.critical = true;
           throw error;
         }
-        console.warn(error);
+        if (process.env.NODE_ENV === 'production' || process.env.DEBUG) console.warn(error);
         _this2.state = Object.assign({}, _this2.state, { error: error });
         return _this2.state;
       });
@@ -147,7 +146,7 @@ function doFn(fnc) {
       finalState.promise.then(function (finalState) {
         done(null, { ok: true, data: finalState });
       }).catch(function (err) {
-        console.error(err);
+        if (process.env.NODE_ENV === 'production' || process.env.DEBUG) console.error(err);
         done(null, { ok: false, error: err });
       });
       return;
