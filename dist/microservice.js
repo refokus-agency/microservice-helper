@@ -19,6 +19,7 @@ var _debug = require('./debug');
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var $pipePromise = function () {
+
   /**
    * Basic Promise object that is transported across de pipeline
    * @param {Function} fnc - Function to execute in the pipeline
@@ -33,7 +34,7 @@ var $pipePromise = function () {
     this.state = state;
     this.promise = new Promise(function (resolve, reject) {
       try {
-        var fncCalled = fnc(Object.assign({}, _this.state));
+        var fncCalled = fnc(_this.state);
 
         if (!(typeof fncCalled.then === 'function')) {
           return _this._successHandler(fncCalled, resolve);
