@@ -11,8 +11,12 @@ export function cmdFncPromisified ($pipe, $critical, state) {
           .then(modifySampleIdAgain2)
 }
 
+export function cmdFncPromisifiedSilence2 ($pipe, $critical, state) {
+  return $pipe(modifySampleIdAgain2, state)
+}
+
 export function cmdFncPromisifiedSilence ($pipe, $critical, state) {
   return $pipe(modifySampleId, state)
           .then(modifySampleIdAgain)
-          .then(modifySampleIdAgain2)
+          .use(cmdFncPromisifiedSilence2)
 }
