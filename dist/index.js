@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.handle = exports.microservice = exports.validate = exports.db = exports.debug = undefined;
+exports.errors = exports.microservice = exports.validate = exports.db = exports.debug = undefined;
 
 var _debug = require('./debug');
 
@@ -21,9 +21,9 @@ var _microservice = require('./microservice');
 
 var microservice = _interopRequireWildcard(_microservice);
 
-var _handler = require('./handler');
+var _errors = require('./errors');
 
-var handle = _interopRequireWildcard(_handler);
+var errors = _interopRequireWildcard(_errors);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -31,5 +31,5 @@ exports.debug = debug;
 exports.db = db;
 exports.validate = validate;
 exports.microservice = microservice;
-exports.handle = handle;
+exports.errors = errors;
 //# sourceMappingURL=index.js.map
