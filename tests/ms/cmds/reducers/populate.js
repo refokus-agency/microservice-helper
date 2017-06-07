@@ -1,7 +1,7 @@
 import * as dbHelpers from '../../../../lib/db'
 
 export function populateField (state) {
-  return dbHelpers.populatePromisified.call(
+  return dbHelpers.populate.call(
                   state.seneca,
                   state.data,
                   'relatedFields',
