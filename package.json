@@ -8,7 +8,7 @@
     "test": "make test",
     "test-db": "make test-db",
     "test-microservice": "make test-microservice",
-    "test-handler": "make test-handler",
+    "test-errors": "make test-errors",
     "prerelease-br": "VERSION_TYPE=br make prerelease",
     "prerelease-fe": "VERSION_TYPE=fe make prerelease",
     "prerelease-fx": "VERSION_TYPE=fx make prerelease"
