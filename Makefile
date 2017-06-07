@@ -64,8 +64,8 @@ test-db:
 test-microservice:
 	make security && make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/microservice.spec.js
 
-test-handler:
-	make security && make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/handler.spec.js
+test-errors:
+	make security && make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/errors.spec.js
 
 generate-docs:
 	$(JSDOC2MD) $(JS_FILES) > API.md

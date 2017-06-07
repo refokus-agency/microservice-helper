@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-expressions */
 
 import {expect} from 'chai'
-import {handle} from '../lib/handler'
+import {handle} from '../lib/errors'
 import Joi from 'joi'
 
 describe('Error handler test', function () {

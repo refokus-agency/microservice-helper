@@ -56,4 +56,4 @@ function handleJoi(joiError, e) {
     });
   });
 }
-//# sourceMappingURL=handler.js.map
+//# sourceMappingURL=errors.js.map
