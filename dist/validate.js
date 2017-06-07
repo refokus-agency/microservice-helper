@@ -3,8 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.joiPromisified = joiPromisified;
-exports.joiElementPromisified = joiElementPromisified;
+exports.joi = joi;
+exports.joiElement = joiElement;
 
 var _joi = require('joi');
 
@@ -34,7 +34,7 @@ function _joiValidator(type) {
  * @fulfil {string} Result of Joi.validate().
  * @reject {Error} Joi Error.
  */
-function joiPromisified(objectToValidate, schema) {
+function joi(objectToValidate, schema) {
   return new Promise(function (resolve, reject) {
     _joi2.default.validate(objectToValidate, schema, { abortEarly: false }, function (err, result) {
       if (err) return reject(err);
@@ -51,7 +51,7 @@ function joiPromisified(objectToValidate, schema) {
  * @fulfil {string} Result of Joi.validate().
  * @reject {Error} Joi Error.
  */
-function joiElementPromisified(elementToValidate, type) {
+function joiElement(elementToValidate, type) {
   return new Promise(function (resolve, reject) {
     var v = _joiValidator(type);
 
