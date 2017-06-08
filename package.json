@@ -9,6 +9,7 @@
     "test-db": "make test-db",
     "test-microservice": "make test-microservice",
     "test-errors": "make test-errors",
+    "test-cache": "make test-cache",
     "prerelease-br": "VERSION_TYPE=br make prerelease",
     "prerelease-fe": "VERSION_TYPE=fe make prerelease",
     "prerelease-fx": "VERSION_TYPE=fx make prerelease"

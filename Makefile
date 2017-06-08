@@ -67,7 +67,10 @@ test-microservice:
 test-errors:
 	make security && make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/errors.spec.js
 
+test-cache:
+	make security && make code-style && $(MOCHA) --compilers js:babel-core/register ./tests/cache.spec.js
+
 generate-docs:
 	$(JSDOC2MD) $(JS_FILES) > API.md
 
-.PHONY: build clean prerelease test test-db test-microservice test-handler code-style generate-docs
+.PHONY: build clean prerelease test test-db test-microservice test-handler code-style generate-docs test-cache
