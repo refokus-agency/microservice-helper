@@ -266,7 +266,7 @@ Common DB functionality across different microservices.
 
 * [cache](#module_cache)
     * [.addKey(key, value, timeout)](#module_cache.addKey)
-    * [.getValue(key)](#module_cache.getValue) ⇒ <code>Object</code>
+    * [.getValue(Key)](#module_cache.getValue) ⇒ <code>Object</code>
     * [.removeKey(key)](#module_cache.removeKey) ⇒ <code>Int</code>
 
 <a name="module_cache.addKey"></a>
@@ -286,14 +286,14 @@ The key must include correct namespace to prevent data collisions
 
 <a name="module_cache.getValue"></a>
 
-### cache.getValue(key) ⇒ <code>Object</code>
+### cache.getValue(Key) ⇒ <code>Object</code>
 Get value from Redis cache.
 
 **Kind**: static method of [<code>cache</code>](#module_cache)  
 
-| Param | Type |
-| --- | --- |
-| key | <code>String</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| Key | <code>String</code> | to obtain value. |
 
 <a name="module_cache.removeKey"></a>
 
@@ -302,7 +302,7 @@ Remove key from Redis cache.
 
 **Kind**: static method of [<code>cache</code>](#module_cache)  
 
-| Param | Type |
-| --- | --- |
-| key | <code>String</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | Key to remove. |
 
