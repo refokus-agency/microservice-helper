@@ -22,13 +22,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {String} value Value to store
  * @param {int} timeout timeout to expire keys
  */
-function addKey(key, value) {
-  var timeout = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+function addKey(_ref) {
+  var key = _ref.key,
+      value = _ref.value,
+      options = _ref.options,
+      _ref$timeout = _ref.timeout,
+      timeout = _ref$timeout === undefined ? 0 : _ref$timeout;
 
-  var redisClient = _redis2.default.createClient();
+  var redisClient = _redis2.default.createClient(options);
   var redisValue = JSON.stringify(value);
 
-  redisClient.set(key, redisValue, 'EX', timeout);
+  return new Promise(function (resolve, reject) {
+    redisClient.set(key, redisValue, 'EX', timeout, function (err) {
+      redisClient.quit();
+
+      if (err) reject(err);
+      resolve();
+    });
+  });
 }
 
 /**
@@ -40,14 +51,21 @@ function addKey(key, value) {
 /**
  * @module
  */
-function getValue(key) {
-  var redisClient = _redis2.default.createClient();
+function getValue(_ref2) {
+  var key = _ref2.key,
+      options = _ref2.options;
+
+  var redisClient = _redis2.default.createClient(options);
 
   return new Promise(function (resolve, reject) {
     redisClient.get(key, function (err, reply) {
+      redisClient.quit();
+
       if (err) {
+        console.log(err);
         reject(err);
       }
+
       resolve(JSON.parse(reply));
     });
   });
@@ -59,11 +77,16 @@ function getValue(key) {
  * @param {String} key Key to remove.
  * @return {Int}
  */
-function removeKey(key) {
-  var redisClient = _redis2.default.createClient();
+function removeKey(_ref3) {
+  var key = _ref3.key,
+      options = _ref3.options;
+
+  var redisClient = _redis2.default.createClient(options);
 
   return new Promise(function (resolve, reject) {
     redisClient.del(key, function (err, reply) {
+      redisClient.quit();
+
       if (err) {
         reject(err);
       }
