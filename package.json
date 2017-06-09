@@ -1,6 +1,6 @@
 {
   "name": "microservice-helper",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "test-db": "make test-db",
     "test-microservice": "make test-microservice",
     "test-errors": "make test-errors",
+    "test-cache": "make test-cache",
     "prerelease-br": "VERSION_TYPE=br make prerelease",
     "prerelease-fe": "VERSION_TYPE=fe make prerelease",
     "prerelease-fx": "VERSION_TYPE=fx make prerelease"
@@ -50,7 +51,8 @@
     "joi": "^10.2.0",
     "joi-objectid": "^2.0.0",
     "lodash": "^4.17.4",
-    "moment": "^2.17.1"
+    "moment": "^2.17.1",
+    "redis": "^2.7.1"
   },
   "standard": {
     "ignore": [
