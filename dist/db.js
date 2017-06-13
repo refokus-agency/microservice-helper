@@ -246,6 +246,8 @@ function _sort(condition) {
  * @reject {Error} The error `name` property will be one of the following:
  */
 function update(dataRaw, bundle, fields) {
+  var _this = this;
+
   return new Promise(function (resolve, reject) {
     var originalDoc = dataRaw.data$();
 
@@ -265,12 +267,16 @@ function update(dataRaw, bundle, fields) {
       return merged;
     }, {});
 
-    dataRaw.data$(updatedDoc).save$(function (err, dataRaw) {
-      if (err) return reject(err);
+    findOne.call(_this, { id: originalDoc.id }, originalDoc.entity$.name).then(function (_ref) {
+      var dataRaw = _ref.dataRaw;
 
-      var data = dataRaw.data$();
-      resolve({ dataRaw: dataRaw, data: data });
-    });
+      dataRaw.data$(updatedDoc).save$(function (err, dataRaw) {
+        if (err) return reject(err);
+
+        var data = dataRaw.data$();
+        resolve({ dataRaw: dataRaw, data: data });
+      });
+    }).catch(reject);
   });
 }
 /**
