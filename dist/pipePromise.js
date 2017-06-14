@@ -109,6 +109,11 @@ var $pipePromise = exports.$pipePromise = function () {
       }
 
       return this.then(function (state) {
+        if (params.length === 0) {
+          console.dir(state);
+          return {};
+        }
+
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
         var _iteratorError = undefined;
@@ -117,7 +122,7 @@ var $pipePromise = exports.$pipePromise = function () {
           for (var _iterator = params[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var param = _step.value;
 
-            console.dir(state[param]);
+            console.dir(_lodash2.default.get(state, param));
           }
         } catch (err) {
           _didIteratorError = true;
