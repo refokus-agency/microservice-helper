@@ -63,6 +63,21 @@ describe('microservice helpers testing', () => {
                   }
     )
   })
+  it('call a cmd function with promise and finally shouldn\'t add a property', (done) => {
+    const senecaApp = testSeneca(done)
+    senecaApp.act({ role: 'ms-test', cmd: 'microservice', action: 'promise' },
+      {
+        sampleId: 'testId1'
+      },
+      (err, result) => {
+        if (err) return done(err)
+
+        expect(result.ok).to.be.true
+        expect(result.data.finally).to.not.be.ok
+        done()
+      }
+    )
+  })
 
   it('call a cmd function with promise and get an error', (done) => {
     const senecaApp = testSeneca(done)

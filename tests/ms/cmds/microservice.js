@@ -1,4 +1,9 @@
-import {modifySampleId, modifySampleIdAgain, modifySampleIdAgain2, modifySampleIdAgainPromise} from './reducers/microservice'
+import {
+  modifySampleId,
+  modifySampleIdAgain,
+  modifySampleIdAgain2,
+  modifySampleIdAgainPromise
+} from './reducers/microservice'
 
 export function cmdFnc ($pipe, $critical, state) {
   return modifySampleId(state)
@@ -6,9 +11,10 @@ export function cmdFnc ($pipe, $critical, state) {
 
 export function cmdFncPromisified ($pipe, $critical, state) {
   return $pipe(modifySampleId, state)
-          .then(modifySampleIdAgain, $critical)
-          .then(modifySampleIdAgainPromise)
-          .then(modifySampleIdAgain2)
+    .then(modifySampleIdAgain, $critical)
+    .then(modifySampleIdAgainPromise)
+    .then(modifySampleIdAgain2)
+    .finally(() => { return {finally: true} })
 }
 
 export function cmdFncPromisifiedSilence2 ($pipe, $critical, state) {
@@ -17,6 +23,6 @@ export function cmdFncPromisifiedSilence2 ($pipe, $critical, state) {
 
 export function cmdFncPromisifiedSilence ($pipe, $critical, state) {
   return $pipe(modifySampleId, state)
-          .then(modifySampleIdAgain)
-          .use(cmdFncPromisifiedSilence2)
+    .then(modifySampleIdAgain)
+    .use(cmdFncPromisifiedSilence2)
 }
