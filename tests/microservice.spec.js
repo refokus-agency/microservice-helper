@@ -2,12 +2,13 @@
 /* eslint-disable no-unused-expressions */
 
 import { expect } from 'chai'
-
+import sinon from 'sinon'
 import seneca from 'seneca'
 import msTest from './ms/'
 
 const tag = 'ms-test'
 const pin = `role:${tag}`
+global._doFinally = () => {}
 
 function testSeneca (fin) {
   return seneca({log: 'test'})
@@ -63,15 +64,33 @@ describe('microservice helpers testing', () => {
                   }
     )
   })
+  it('call a cmd function with promise and finally shouldn\'t add a property', (done) => {
+    const senecaApp = testSeneca(done)
+    senecaApp.act({ role: 'ms-test', cmd: 'microservice', action: 'promise' },
+      {
+        sampleId: 'testId1'
+      },
+      (err, result) => {
+        if (err) return done(err)
+
+        expect(result.ok).to.be.true
+        expect(result.data.finally).to.not.be.ok
+        done()
+      }
+    )
+  })
 
   it('call a cmd function with promise and get an error', (done) => {
     const senecaApp = testSeneca(done)
+    const spy = sinon.spy(global, '_doFinally')
     senecaApp.act({ role: 'ms-test', cmd: 'microservice', action: 'promise' },
                   (err, result) => {
                     if (err) return done(err)
 
                     expect(result.ok).to.be.false
                     expect(result.error).to.be.ok
+                    expect(spy.calledWith('finally')).to.be.ok
+                    spy.restore()
                     done()
                   }
     )
