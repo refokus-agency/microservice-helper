@@ -14,7 +14,7 @@ export function cmdFncPromisified ($pipe, $critical, state) {
     .then(modifySampleIdAgain, $critical)
     .then(modifySampleIdAgainPromise)
     .then(modifySampleIdAgain2)
-    .finally(() => { return {finally: true} })
+    .finally(() => { global._doFinally('finally'); return {finally: true} })
 }
 
 export function cmdFncPromisifiedSilence2 ($pipe, $critical, state) {
