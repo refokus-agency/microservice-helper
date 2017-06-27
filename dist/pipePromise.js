@@ -33,23 +33,25 @@ var $pipePromise = exports.$pipePromise = function () {
 
     _classCallCheck(this, $pipePromise);
 
-    this.state = state;
+    this.state = _lodash2.default.cloneDeep(state);
     this.promise = new Promise(function (resolve, reject) {
-      try {
-        var fncCalled = fnc(_lodash2.default.cloneDeep(_this.state));
+      setTimeout(function () {
+        try {
+          var fncReturn = fnc(_lodash2.default.cloneDeep(_this.state));
 
-        if (!(typeof fncCalled.then === 'function')) {
-          return _this._successHandler(fncCalled, resolve);
-        }
+          if (!fncReturn || typeof fncReturn.then !== 'function' || typeof fncReturn.catch !== 'function') {
+            return _this._successHandler(fncReturn, resolve);
+          }
 
-        return fncCalled.then(function (fncState) {
-          return _this._successHandler(fncState, resolve);
-        }).catch(function (error) {
+          return fncReturn.then(function (fncState) {
+            return _this._successHandler(fncState, resolve);
+          }).catch(function (error) {
+            return _this._errorHandler(error, critical, reject, resolve);
+          });
+        } catch (error) {
           return _this._errorHandler(error, critical, reject, resolve);
-        });
-      } catch (error) {
-        return _this._errorHandler(error, critical, reject, resolve);
-      }
+        }
+      });
     });
   }
 
@@ -57,7 +59,7 @@ var $pipePromise = exports.$pipePromise = function () {
     key: '_successHandler',
     value: function _successHandler(nState, resolve) {
       this.state = _lodash2.default.merge(this.state, nState);
-      return resolve(_lodash2.default.cloneDeep(this.state));
+      return resolve(this.state);
     }
   }, {
     key: '_errorHandler',
@@ -70,17 +72,19 @@ var $pipePromise = exports.$pipePromise = function () {
       if (process.env.NODE_ENV === 'production' || process.env.DEBUG) console.warn(error);
 
       this.state.error = error;
-      return resolve(_lodash2.default.cloneDeep(this.state));
+      return resolve(this.state);
     }
   }, {
     key: 'then',
     value: function then(fnc, critical) {
       var _this2 = this;
 
-      this.promise = this.promise.then(fnc).then(function (nState) {
+      this.promise = this.promise.then(function (state) {
+        return new $pipePromise(fnc, state, critical).promise;
+      }).then(function (nState) {
         _this2.state = _lodash2.default.merge(_this2.state, nState);
 
-        return _lodash2.default.cloneDeep(_this2.state);
+        return _this2.state;
       }).catch(function (error) {
         if (critical || _this2.critical) {
           _this2.critical = true;
@@ -89,7 +93,7 @@ var $pipePromise = exports.$pipePromise = function () {
 
         if (process.env.NODE_ENV === 'production' || process.env.DEBUG) console.warn(error);
         _this2.state.error = error;
-        return _lodash2.default.cloneDeep(_this2.state);
+        return _this2.state;
       });
 
       return this;
@@ -98,7 +102,7 @@ var $pipePromise = exports.$pipePromise = function () {
     key: 'use',
     value: function use(pipeFnc, critical) {
       return this.then(function (state) {
-        return pipeFnc($pipe, true, state);
+        return pipeFnc($pipe, true, state).promise;
       }, critical);
     }
   }, {
@@ -141,6 +145,26 @@ var $pipePromise = exports.$pipePromise = function () {
 
         return {};
       });
+    }
+  }, {
+    key: 'finally',
+    value: function _finally(fnc) {
+      var _this3 = this;
+
+      var err = void 0;
+
+      this.promise = this.promise.catch(function (error) {
+        err = error;
+        return error;
+      }).then(function () {
+        return new $pipePromise(fnc, _this3.state, true).promise.then(function () {
+          if (err) throw err;
+
+          return _this3.state;
+        });
+      });
+
+      return this;
     }
   }]);
 
