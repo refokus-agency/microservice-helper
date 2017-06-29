@@ -166,6 +166,52 @@ var $pipePromise = exports.$pipePromise = function () {
 
       return this;
     }
+  }, {
+    key: 'return',
+    value: function _return() {
+      var _this4 = this;
+
+      for (var _len2 = arguments.length, params = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        params[_key2] = arguments[_key2];
+      }
+
+      this.promise = this.promise.then(function () {
+        params.push('error');
+        var state = {};
+
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+          for (var _iterator2 = params[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var param = _step2.value;
+
+            if (!_this4.state.hasOwnProperty(param)) continue;
+
+            state[param] = _lodash2.default.get(_this4.state, param);
+          }
+        } catch (err) {
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+              _iterator2.return();
+            }
+          } finally {
+            if (_didIteratorError2) {
+              throw _iteratorError2;
+            }
+          }
+        }
+
+        _this4.state = state;
+        return state;
+      });
+
+      return this;
+    }
   }]);
 
   return $pipePromise;
