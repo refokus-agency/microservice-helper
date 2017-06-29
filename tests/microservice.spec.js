@@ -56,7 +56,6 @@ describe('microservice helpers testing', () => {
       },
                   (err, result) => {
                     if (err) return done(err)
-
                     expect(result.ok).to.be.true
                     expect(result.data.sampleId).to.be.ok
                     expect(result.data.sampleId).to.not.equal('testId1')
@@ -109,6 +108,41 @@ describe('microservice helpers testing', () => {
                     expect(result.data.sampleId).to.not.equal('testId1')
                     done()
                   }
+    )
+  })
+
+  it('return function must filter all props except for sampleId', (done) => {
+    const senecaApp = testSeneca(done)
+
+    senecaApp.act({ role: 'ms-test', cmd: 'microservice', action: 'promise' },
+      {
+        sampleId: 'testId1'
+      },
+      (err, result) => {
+        if (err) return done(err)
+
+        expect(result.ok).to.be.true
+        expect(result.data.sampleId).to.be.ok
+        expect(result.data.seneca).to.not.be.ok
+        done()
+      }
+    )
+  })
+
+  it('return function must filter all props', (done) => {
+    const senecaApp = testSeneca(done)
+
+    senecaApp.act({ role: 'ms-test', cmd: 'microservice', action: 'promiseReturnNone' },
+      {
+        sampleId: 'testId1'
+      },
+      (err, result) => {
+        if (err) return done(err)
+
+        expect(result.ok).to.be.true
+        expect(result.data).to.be.empty
+        done()
+      }
     )
   })
 })
