@@ -158,7 +158,7 @@ function findOr(where, collection) {
       // Bundle all together the raw and object data
       // in order to extract them later.
       var listResult = _lodash2.default.reduce(values, function (acc, v) {
-        var objs = v.map(function (e) {
+        var objs = v[0].map(function (e) {
           return Object.assign({}, { d: e.data$() }, { r: e });
         });
         return acc.concat(objs);
