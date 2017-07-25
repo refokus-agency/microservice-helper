@@ -141,6 +141,7 @@ function findOne(where, collection) {
  */
 function findOr(where, collection) {
   var seneca = this;
+
   return new Promise(function (resolve, reject) {
     var query = seneca.make$(collection);
 
@@ -158,7 +159,6 @@ function findOr(where, collection) {
       // in order to extract them later.
       var listResult = _lodash2.default.reduce(values, function (acc, v) {
         var objs = v[0].map(function (e) {
-          if (!e.data$) return;
           return Object.assign({}, { d: e.data$() }, { r: e });
         });
         return acc.concat(objs);
