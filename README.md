@@ -18,12 +18,6 @@ Common functions for all grm-like microservices
  - nodejs
  - build-essentials
  - yarn (optional)
- - Seneca js
-    - seneca 3.4.1
-    - seneca-mesh 0.9.0
-    - seneca-mongo-store 1.1.0
-    - seneca-transport 2.1.1
-    - seneac-entity 1.3.0
 
 ## Dependencies
 ```bash
