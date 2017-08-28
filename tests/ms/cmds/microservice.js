@@ -35,3 +35,10 @@ export function cmdFncPromiseReturnNone ($pipe, $critical, state) {
     .use(cmdFncPromisified)
     .return()
 }
+
+export function cmdFncPromisifiedIf ($pipe, $critical, state) {
+  return $pipe(modifySampleId, state)
+    .if(({condition}) => condition, modifySampleIdAgain2, modifySampleIdAgain)
+    .finally(() => { global._doFinally('finally'); return {finally: true} })
+    .return('sampleId')
+}
