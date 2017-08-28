@@ -99,6 +99,18 @@ var $pipePromise = exports.$pipePromise = function () {
       return this;
     }
   }, {
+    key: 'if',
+    value: function _if(conditionalFnc, successPipeFnc, failPipeFnc, critical) {
+      critical = typeof failPipeFnc !== 'function' ? failPipeFnc : critical;
+      failPipeFnc = typeof failPipeFnc === 'function' ? failPipeFnc : function () {};
+
+      return this.then(function (state) {
+        if (conditionalFnc(state)) return successPipeFnc(state);
+
+        return failPipeFnc(state);
+      }, critical);
+    }
+  }, {
     key: 'use',
     value: function use(pipeFnc, critical) {
       return this.then(function (state) {

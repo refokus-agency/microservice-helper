@@ -27,6 +27,8 @@ export default function (opts) {
 
   seneca.add(`${pin}, cmd:microservice, action:promise`, doFn(cmdMicroservice.cmdFncPromisified))
 
+  seneca.add(`${pin}, cmd:microservice, action:promiseIf`, doFn(cmdMicroservice.cmdFncPromisifiedIf))
+
   seneca.add(`${pin}, cmd:microservice, action:promiseSilence`, doFn(cmdMicroservice.cmdFncPromisifiedSilence))
 
   seneca.add(`${pin}, cmd:microservice, action:promiseReturnNone`, doFn(cmdMicroservice.cmdFncPromiseReturnNone))

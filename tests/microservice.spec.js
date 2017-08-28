@@ -63,6 +63,7 @@ describe('microservice helpers testing', () => {
                   }
     )
   })
+
   it('call a cmd function with promise and finally shouldn\'t add a property', (done) => {
     const senecaApp = testSeneca(done)
     senecaApp.act({ role: 'ms-test', cmd: 'microservice', action: 'promise' },
@@ -141,6 +142,42 @@ describe('microservice helpers testing', () => {
 
         expect(result.ok).to.be.true
         expect(result.data).to.be.empty
+        done()
+      }
+    )
+  })
+
+  it('call a cmd function with promise - if ', (done) => {
+    const senecaApp = testSeneca(done)
+    senecaApp.act({ role: 'ms-test', cmd: 'microservice', action: 'promiseIf' },
+      {
+        sampleId: 'testId1',
+        condition: true
+      },
+      (err, result) => {
+        if (err) return done(err)
+
+        expect(result.ok).to.be.true
+        expect(result.data.sampleId).to.be.ok
+        expect(result.data.sampleId).to.equal('newId3')
+        done()
+      }
+    )
+  })
+
+  it('call a cmd function with promise - else ', (done) => {
+    const senecaApp = testSeneca(done)
+    senecaApp.act({ role: 'ms-test', cmd: 'microservice', action: 'promiseIf' },
+      {
+        sampleId: 'testId1',
+        condition: false
+      },
+      (err, result) => {
+        if (err) return done(err)
+
+        expect(result.ok).to.be.true
+        expect(result.data.sampleId).to.be.ok
+        expect(result.data.sampleId).to.equal('newId2')
         done()
       }
     )
