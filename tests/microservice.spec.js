@@ -104,7 +104,7 @@ describe('microservice helpers testing', () => {
                     if (err) return done(err)
 
                     expect(result.ok).to.be.true
-                    expect(result.data.error).to.be.ok
+                    expect(result.error).to.be.ok
                     expect(result.data.sampleId).to.be.ok
                     expect(result.data.sampleId).to.not.equal('testId1')
                     done()
