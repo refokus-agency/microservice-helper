@@ -46,7 +46,15 @@ function doFn(fnc) {
       }
 
       finalState.promise.then(function (finalState) {
-        done(null, { ok: true, data: finalState });
+        var ret = { ok: true, data: finalState };
+
+        if (finalState.error) {
+          var error = Object.assign({}, finalState.error);
+          delete finalState.error;
+          ret.error = error;
+        }
+
+        done(null, ret);
       }).catch(function (err) {
         if (process.env.NODE_ENV === 'production' || process.env.DEBUG) console.error(err);
         done(null, { ok: false, error: err });
