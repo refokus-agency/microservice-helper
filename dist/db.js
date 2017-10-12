@@ -75,6 +75,7 @@ function save(element, collection) {
 
     query.save$(function (err, dataRaw) {
       if (err) return reject(err);
+      if (!dataRaw) return resolve({ dataRaw: {}, data: {} });
 
       var data = dataRaw.data$();
       resolve({ dataRaw: dataRaw, data: data });
@@ -272,6 +273,7 @@ function update(dataRaw, bundle, fields) {
 
       dataRaw.data$(updatedDoc).save$(function (err, dataRaw) {
         if (err) return reject(err);
+        if (!dataRaw) return resolve({ dataRaw: {}, data: {} });
 
         var data = dataRaw.data$();
         resolve({ dataRaw: dataRaw, data: data });
