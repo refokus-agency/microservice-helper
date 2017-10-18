@@ -35,9 +35,16 @@ var $pipePromise = exports.$pipePromise = function () {
 
     this.state = _lodash2.default.cloneDeep(state);
     this.promise = new Promise(function (resolve, reject) {
-      setTimeout(function () {
+      process.nextTick(function () {
         try {
-          var fncReturn = fnc(_lodash2.default.cloneDeep(_this.state));
+          var _state = JSON.parse(JSON.stringify(_this.state));
+          _state.seneca = _this.state.seneca;
+          for (var key in _this.state) {
+            if (!key.match(/raw$/i)) continue;
+            _state[key] = _this.state[key];
+          }
+
+          var fncReturn = fnc(_state);
 
           if (!fncReturn || typeof fncReturn.then !== 'function' || typeof fncReturn.catch !== 'function') {
             return _this._successHandler(fncReturn, resolve);
