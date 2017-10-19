@@ -35,7 +35,7 @@ var $pipePromise = exports.$pipePromise = function () {
 
     this.state = _lodash2.default.cloneDeep(state);
     this.promise = new Promise(function (resolve, reject) {
-      process.nextTick(function () {
+      setImmediate(function () {
         try {
           var _state = JSON.parse(JSON.stringify(_this.state));
           _state.seneca = _this.state.seneca;
