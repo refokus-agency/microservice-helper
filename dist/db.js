@@ -179,6 +179,10 @@ function findOr(where, collection) {
       var dataRaw = listDataRaw || {};
       var data = listData || {};
 
+      if (where.sortFirst$) {
+        data.sort(_sort(where.sortFirst$));
+      }
+
       if (where.skip$) {
         dataRaw.splice(0, where.skip$);
         data.splice(0, where.skip$);
